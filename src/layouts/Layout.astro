@@ -3,8 +3,12 @@ import '../styles/global.css'
 export interface Props {
 	title: string;
 }
+const url = import.meta.env.PUBLIC_STRAPI_URL + "/api/posts?populate=*";
+const response = await fetch(url);
+
 
 const { title } = Astro.props as Props;
+
 ---
 
 <!DOCTYPE html>

@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: 'Moderat';
+    src: url('/fonts/Moderat-Book.woff2') format('woff2'),
+         url('/fonts/Moderat-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@theme {
+    /* Spacing */
+    --spacing-margin: 10px;
+
+    /* Font */
+    --font-base: 'Moderat', sans-serif;
+    --text-base: 14px;
+    --text-title: 18px;
+}
+
+
+*{
+    @apply font-base;
+}

@@ -1,83 +1,132 @@
 import React, { useRef, useEffect } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-// Import required modules
-import { Navigation } from 'swiper/modules';
-
+import { Navigation, Keyboard } from 'swiper/modules';
 
 export default function Slider({ data, onSwiperReady }) {
-
     const swiperRef = useRef(null);
 
-    useEffect(() => {
-        if (swiperRef.current && onSwiperReady) {
-            onSwiperReady(swiperRef.current.swiper);
+    const handleSwiper = (swiper) => {
+        // Stocker l'instance
+        swiperRef.current = swiper;
+
+        // Forcer le recalcul après un tick (utile pour loop + auto-width)
+        setTimeout(() => {
+            swiper.updateSlides();
+            swiper.update();
+        }, 0);
+
+        if (onSwiperReady) onSwiperReady(swiper);
+    };
+
+    // Recalculer après chaque slide (utile si un clone provoque un décalage)
+    const handleSlideChange = () => {
+        if (swiperRef.current) {
+            swiperRef.current.updateSlides();
         }
-    }, []);
+    };
 
-    console.log(onSwiperReady);
-
+    const loopAdditionalSlides = data.media.length + 1;
     return (
         <>
             <style>
                 {`
-                    .swiper-wrapper{
+                    .swiper-wrapper {
                         user-select: none !important;
                     }
-                    .swiper-slide{
-                        width: auto;
-                    }
-                    .swiper-button-prev{
+                    .swiper-button-prev {
                         display: none;
                     }
-                    .swiper-button-next{
+                    .swiper-button-next {
                         height: 100%;
                         width: 100%;
                         top: 0;
                         left: 0;
                     }
-                    .swiper-button-next:after{
+                    .swiper-button-next:after {
                         display: none;
                     }
                     @media (max-width: 768px) {
-                        .swiper-button-next{
+                        .swiper-wrapper,
+                        .swiper,
+                        .swiper-slide {
+                            height: 100%;
+                        }
+                        .swiper-slide {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .swiper-button-next {
                             display: none;
                         }
                     }
-                  
                 `}
             </style>
+
             <Swiper
-                ref={swiperRef}
                 navigation={true}
-                modules={[Navigation]}
+                modules={[Navigation, Keyboard]}
                 slidesPerView={'auto'}
                 loop={true}
-                onSwiper={(swiper) => {
-                    // On peut aussi passer swiper ici
-                    if (onSwiperReady) onSwiperReady(swiper);
+                keyboard={{
+                    enabled: true,
                 }}
-                className="mySwiper h-full bg-amber-50">
-                {data.media.map((media, id) =>
-                    <SwiperSlide key={id}>
-                        <img
-                            src={media.url}
-                            loading='lazy'
-                            class="md:h-[calc(100vh-57px)] w-auto" />
+                loopAdditionalSlides={loopAdditionalSlides}
+                onSwiper={handleSwiper}
+                onSlideChange={handleSlideChange}
+                className="mySwiper md:h-[calc(100vh-57px)]"
+            >
+                {data.media.map((media, id) => (
+
+                    <SwiperSlide key={id} className="md:!w-auto">
+                        <div className={`slide-img--wrapper md:h-[calc(100vh-57px)] ${id === data.media.length - 1 ? 'pr-[10px]' : ''}`}>
+                            <img
+                                src={media.url}
+                                loading="lazy"
+                                className="md:h-[calc(100vh-57px)] w-auto block"
+                            />
+                        </div>
+                    </SwiperSlide>
+                ))}
+                {(data.description || data.credit) && (
+                    <SwiperSlide className="md:!w-auto max-md:!items-start">
+                        <div className="description--wrapper md:w-[calc(30vw+40px)] pr-[40px]">
+                            <p>
+                                {data.description}
+                            </p>
+                            <p>
+                                Crédits photos : {data.credit}
+                            </p>
+                        </div>
+                    </SwiperSlide>
+                )}
+                {data.media.map((media, id) => (
+                    <SwiperSlide key={id} className="md:!w-auto">
+                        <div className='slide-img--wrapper md:h-[calc(100vh-57px)]'>
+                            <img
+                                src={media.url}
+                                loading="lazy"
+                                className="md:h-[calc(100vh-57px)] w-auto block"
+                            />
+                        </div>
+                    </SwiperSlide>
+                ))}
+                {(data.description || data.credit) && (
+                    <SwiperSlide className="md:!w-auto max-md:!items-start">
+                        <div className="description--wrapper md:w-[calc(30vw+40px)] pr-[40px]">
+                            <p>
+                                {data.description}
+                            </p>
+                            <p>
+                                Crédits photos : {data.credit}
+                            </p>
+                        </div>
                     </SwiperSlide>
                 )}
             </Swiper>
         </>
     );
 }
-
-
-
-
-
 

@@ -15,18 +15,20 @@ const Project = ({ data }) => {
   };
 
   return (
-    <main class="max-md:mx-margin mb-margin md:ml-margin mt-0 grid grid-cols-3 gap-margin md:h-[calc(100vh-57px)]">
+    <main className="max-md:mx-margin mb-margin md:ml-margin mt-0 flex flex-col md:grid md:grid-cols-3 gap-margin h-[calc(100vh-57px)]">
 
-    <div>
-      <ProjectInfos data={data}/>
-      <Blueprint goToSlide={goToSlide}/>
-    </div>
+      <div className="project-infos--wrapper flex flex-col justify-center md:h-full">
+        <ProjectInfos data={data} />
+        <div className="max-md:hidden flex flex-col justify-center h-full">
+          <Blueprint goToSlide={goToSlide} />
+        </div>
+      </div>
 
-    <div class="slider--wrapper col-span-2">
-      <Slider data={data} onSwiperReady={setSwiperInstance} client:only="react"/>
-    </div>
-    
-	</main>
+      <div className="slider--wrapper col-span-2 max-md:flex-1">
+        <Slider data={data} onSwiperReady={setSwiperInstance} client:only="react" />
+      </div>
+
+    </main>
   );
 };
 

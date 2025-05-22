@@ -11,7 +11,7 @@ const HeaderProjet = ({ data }) => {
                     <div>
                         <h1 className="text-title order-1 md:order-2">{data.title}</h1>
                     </div>
-                    <div>
+                    <div className="max-md:hidden">
                         <a href="/" aria-label="Retour à la page d'accueil">
                             <h2 className='text-title order-1 md:order-2'>G-architecture</h2>
                         </a>

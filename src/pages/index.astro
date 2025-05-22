@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.jsx'
 import Card from '../components/Card.astro';
 
 export const prerender = true;
 ---
 
 <Layout title="Welcome to Astro.">
+	<Header client:only="react" />
 	<main class="m-margin">
 		<Card title="Welcome to G-architecture" body="Welcome to G-architecture" href="https://g-architecture.com" />
 	</main>

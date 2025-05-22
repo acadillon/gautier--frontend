@@ -10,6 +10,9 @@
 
 
 @theme {
+    /* Colors */
+    --color-blue: #0000FF;
+
     /* Spacing */
     --spacing-margin: 10px;
 

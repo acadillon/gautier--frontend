@@ -23,4 +23,5 @@
 
 body {
   @apply font-base text-base;
+  line-height: 1,1;
 }

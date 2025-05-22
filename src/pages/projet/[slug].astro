@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
   return projects.map((project) => {
     return {
-      params: { slug: project.attributes.slug },
+      params: { slug: project.slug },
       props: { project },
     };
   });

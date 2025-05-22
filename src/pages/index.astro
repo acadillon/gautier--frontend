@@ -1,12 +1,21 @@
 ---
+// src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.jsx";
+import ProjectsList from "../layouts/ProjectsList.jsx";
+import fetchApi from "../assets/scripts/lib/strapi.js";
+
+const projects = await fetchApi({
+  endpoint: "projects?populate=*",
+  wrappedByKey: "data",
+});
 
 export const prerender = true;
 ---
 
 <Layout title="Welcome to Astro.">
-  <Header client:only="react" />
-  <main class="m-margin">
+  <Header client:only="react" isHome={true} />
+  <main class="m-margin mt-0">
+    <ProjectsList client:only="react" projects={projects} />
   </main>
 </Layout>

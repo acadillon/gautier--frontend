@@ -1,7 +1,26 @@
 ---
+import fetchApi from '../../assets/scripts/lib/strapi.js';
 import Layout from '../../layouts/Layout.astro';
 import HeaderProjet from '../../components/Header-projet.jsx'
 
+
+export async function getStaticPaths() {
+  const projects = await fetchApi({
+    endpoint: 'projects?=*populate',
+    wrappedByKey: 'data',
+    locale: 'fr',
+  });
+
+  return projects.map((project) => {
+    return {
+      params: { slug: project.attributes.slug },
+      props: { project },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { project } = Astro.props;
 export const prerender = true;
 ---
 

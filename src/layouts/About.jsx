@@ -6,7 +6,6 @@ import fetchApi from "../assets/scripts/lib/strapi.js";
 const about = await fetchApi({
   endpoint: "about?populate=*",
   wrappedByKey: "data",
-  locale: "fr",
 });
 
 const About = ({ isOpen }) => {

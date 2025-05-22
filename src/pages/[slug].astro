@@ -1,14 +1,13 @@
 ---
-import fetchApi from '../../assets/scripts/lib/strapi.js';
-import Layout from '../../layouts/Layout.astro';
-import HeaderProjet from '../../layouts/Header-projet.jsx'
+import fetchApi from '../assets/scripts/lib/strapi.js';
+import Layout from '../layouts/Layout.astro';
+import HeaderProjet from '../layouts/Header-projet.jsx'
 
 
 export async function getStaticPaths() {
   const projects = await fetchApi({
     endpoint: 'projects?=*populate',
     wrappedByKey: 'data',
-    locale: 'fr',
   });
 
   return projects.map((project) => {

@@ -1,18 +1,18 @@
 ---
-import fetchApi from '../assets/scripts/lib/strapi.js';
-import Layout from '../layouts/Layout.astro';
-import HeaderProjet from '../layouts/Header-projet.jsx'
-
+// src/pages/[slug].astro
+import fetchApi from "../assets/scripts/lib/strapi.js";
+import Layout from "../layouts/Layout.astro";
+import Header from "../layouts/Header.jsx";
 
 export async function getStaticPaths() {
   const projects = await fetchApi({
-    endpoint: 'projects?=*populate',
-    wrappedByKey: 'data',
+    endpoint: "projects?=*populate",
+    wrappedByKey: "data",
   });
 
   return projects.map((project) => {
     return {
-      params: { slug: project.Slug },
+      params: { slug: project.slug },
       props: { project },
     };
   });
@@ -24,8 +24,6 @@ export const prerender = true;
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="m-margin">
-        <HeaderProjet />
-	</main>
+  <Header isHome={false} />
+  <main class="m-margin"></main>
 </Layout>
-

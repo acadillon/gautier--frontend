@@ -1,18 +1,45 @@
 import React from "react";
 
-const Blueprint = ({ goToSlide }) => {
+const Blueprint = ({ data, goToSlide, activeSlide }) => {
+    const parseCoordinates = (caption) => {
+        if (!caption) return { x: 0, y: 0 };
+        
+        const match = caption.match(/x(\d+)_y(\d+)/);
+        console.log(match);
+        if (match) {
+            return {
+                x: match[1],
+                y: match[2]
+            };
+        } else {
+            return { x: 0, y: 0 };
+        }
+
+    };
     return (
         <>
-            <div>
+            <div className="relative aspect-square w-full px-[30px]">
 
-                <div className="bg-blue aspect-square w-full">
 
-                </div>
-                <div className="flex gap-4">
-                    <button onClick={() => goToSlide(0)}>Image 1</button>
-                    <button onClick={() => goToSlide(1)}>Image 2</button>
-                    <button onClick={() => goToSlide(2)}>Image 3</button>
-                </div>
+                <img src={data.blueprint.url} alt='blueprint' key={data.blueprint.id} className="aspect-square object-contain w-full h-full" />
+
+                {data.media.map((media, id) => {
+                    const coords = parseCoordinates(media.caption);
+                    const isActive = id === activeSlide;
+                    return (
+                        <button
+                            key={id}
+                            onClick={() => goToSlide(id)}
+                            className={`absolute aspect-square w-[12px] rounded-full ${isActive ? 'bg-blue' : 'bg-gray-500'}`}
+                            style={{
+                                left: `${coords.x}px`,
+                                top: `${coords.y}px`
+                            }}
+                        >
+                        </button>
+                    );
+                })}
+
             </div>
         </>
     );

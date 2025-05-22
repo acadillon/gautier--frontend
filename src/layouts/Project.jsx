@@ -7,11 +7,18 @@ import Blueprint from "../components/features/Blueprint.jsx";
 
 const Project = ({ data }) => {
   const [swiperInstance, setSwiperInstance] = useState(null);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const goToSlide = (index) => {
     if (swiperInstance) {
       swiperInstance.slideTo(index);
+      setActiveSlide(index);
     }
+  };
+
+  const handleSlideChange = (swiper) => {
+    setActiveSlide(swiper.realIndex);
+    console.log(swiper.realIndex);
   };
 
   return (
@@ -20,12 +27,12 @@ const Project = ({ data }) => {
       <div className="project-infos--wrapper flex flex-col justify-center md:h-full">
         <ProjectInfos data={data} />
         <div className="max-md:hidden flex flex-col justify-center h-full">
-          <Blueprint goToSlide={goToSlide} />
+          <Blueprint data={data} goToSlide={goToSlide} activeSlide={activeSlide} />
         </div>
       </div>
 
       <div className="slider--wrapper col-span-2 max-md:flex-1">
-        <Slider data={data} onSwiperReady={setSwiperInstance} client:only="react" />
+        <Slider data={data} onSwiperReady={setSwiperInstance} onSlideChange={handleSlideChange} client:only="react" />
       </div>
 
     </main>

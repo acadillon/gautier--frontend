@@ -22,7 +22,7 @@ export default function CustomCursor({ type = "default", text = "" }) {
   return (
     <div
       ref={cursorRef}
-      className={`fixed z-50 pointer-events-none ${visible ? "opacity-100" : "opacity-0"}`}
+      className={`fixed z-50 pointer-events-none max-md:!hidden ${visible ? "opacity-100" : "opacity-0"}`}
       style={{
         transform: "translate(-50%, -50%)",
       }}

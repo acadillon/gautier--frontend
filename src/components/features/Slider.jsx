@@ -91,18 +91,58 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                 }}
                 className="mySwiper md:h-[calc(100vh-57px)]"
             >
-                {data.media.map((media, id) => (
-
-                    <SwiperSlide key={id} className="md:!w-auto">
-                        <div className={`slide-img--wrapper md:h-[calc(100vh-57px)]`}>
-                            <img
-                                src={media.url}
-                                loading="lazy"
-                                className="md:h-[calc(100vh-57px)] w-auto block"
-                            />
+                {data.media.map((media, id) => {
+                    const imageUrl =
+                        media.formats?.large?.url || media.url;
+                    const imageUrlMedium =
+                        media.formats?.medium?.url || media.url;
+                    const imageUrlSmall =
+                        media.formats?.small?.url || media.url;
+                    return (
+                        <SwiperSlide key={id} className="md:!w-auto">
+                            <div className={`slide-img--wrapper md:h-[calc(100vh-57px)]`}>
+                                <img
+                                    src={imageUrl}
+                                    srcSet={`${imageUrlSmall} 500w, ${imageUrlMedium} 700w, ${imageUrl} 1200w`}
+                                    sizes="(max-width: 500px) 500px, (max-width: 700px) 700px, 1200px"
+                                    loading="lazy"
+                                    className="md:h-[calc(100vh-57px)] w-auto block"
+                                />
+                            </div>
+                        </SwiperSlide>);
+                })}
+                {(data.description || data.credit) && (
+                    <SwiperSlide className="md:!w-auto max-md:!items-start">
+                        <div className="description--wrapper md:w-[calc(30vw+40px)] pr-[40px]">
+                            <p>
+                                {data.description}
+                            </p>
+                            <p>
+                                Crédits photos : {data.credit}
+                            </p>
                         </div>
                     </SwiperSlide>
-                ))}
+                )}
+                {data.media.map((media, id) => {
+                    const imageUrl =
+                        media.formats?.large?.url || media.url;
+                    const imageUrlMedium =
+                        media.formats?.medium?.url || media.url;
+                    const imageUrlSmall =
+                        media.formats?.small?.url || media.url;
+                    return (
+                        <SwiperSlide key={id} className="md:!w-auto">
+                            <div className={`slide-img--wrapper md:h-[calc(100vh-57px)]`}>
+                                <img
+                                    src={imageUrl}
+                                    srcSet={`${imageUrlSmall} 500w, ${imageUrlMedium} 700w, ${imageUrl} 1200w`}
+                                    sizes="(max-width: 500px) 500px, (max-width: 700px) 700px, 1200px"
+                                    loading="lazy"
+                                    className="md:h-[calc(100vh-57px)] w-auto block"
+                                />
+                            </div>
+                        </SwiperSlide>);
+                })}
                 {(data.description || data.credit) && (
                     <SwiperSlide className="md:!w-auto max-md:!items-start">
                         <div className="description--wrapper md:w-[calc(30vw+40px)] pr-[40px]">

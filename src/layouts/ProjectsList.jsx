@@ -1,17 +1,18 @@
 //src/layouts/ProjectsList.jsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomCursor from "../components/common/CustomCursor";
 
 export default function ProjectsList({ projects }) {
   const [hoveredTitle, setHoveredTitle] = useState("");
   const [cursorType, setCursorType] = useState("default");
 
+
   return (
     <>
       <CustomCursor type={cursorType} text={hoveredTitle} />
 
-      <div className="px-margin pb-margin grid grid-cols-1 md:grid-cols-3 gap-margin w-full">
+      <div className={`px-margin pb-margin grid grid-cols-1 md:grid-cols-3 gap-margin w-full animate-enter`}>
         {projects.map((project) => {
           const imageUrl =  
             project.media?.[0]?.formats?.medium?.url || project.media?.[0]?.url;

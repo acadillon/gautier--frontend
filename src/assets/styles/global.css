@@ -19,6 +19,18 @@
   --font-base: "Moderat", sans-serif;
   --text-base: 14px;
   --text-title: 18px;
+
+  --animate-enter: enter 2s ease-in-out forwards;
+
+  @keyframes enter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      
+      opacity: 1;
+    }
+  }
 }
 
 body {

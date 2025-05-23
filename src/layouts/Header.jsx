@@ -3,7 +3,7 @@
 import { useState } from "react";
 import About from "./About.jsx";
 
-const Header = ({ isHome, data }) => {
+const Header = ({ isHome, data = {} }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {
@@ -40,14 +40,18 @@ const Header = ({ isHome, data }) => {
               title="Retour à l’accueil"
               aria-label="Retour à l’accueil"
             >
-              <h2 className="text-title o">G-architecture</h2>
+              <h1 className="text-title o">G-architecture</h1>
             </a>
           )}
 
           <div className="header--workphase-cross order-3 md:order-3 max-md:hidden flex justify-between items-center">
             {isHome ? (
               <>
-                <h2 className={`text-title ${isOpen ? "block" : "hidden"}`}>
+                <h2
+                  className={`text-title transition-opacity duration-500 ease-in-out ${
+                    isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
+                >
                   Phases de projets
                 </h2>
                 <div></div>

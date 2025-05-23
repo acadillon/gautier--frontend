@@ -5,11 +5,11 @@ import CustomCursor from "../components/common/CustomCursor";
 
 export default function ProjectsList({ projects }) {
   const [hoveredTitle, setHoveredTitle] = useState("");
-  const [cursorVisible, setCursorVisible] = useState(false);
+  const [cursorType, setCursorType] = useState("default");
 
   return (
     <>
-      <CustomCursor text={hoveredTitle} visible={cursorVisible} />
+      <CustomCursor type={cursorType} text={hoveredTitle} />
 
       <div className="px-margin pb-margin grid grid-cols-1 md:grid-cols-3 gap-margin w-full">
         {projects.map((project) => {
@@ -23,14 +23,14 @@ export default function ProjectsList({ projects }) {
                   <img
                     src={imageUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover custom-cursor-target"
+                    className="w-full h-full object-cover"
                     onMouseEnter={() => {
                       setHoveredTitle(project.title);
-                      setCursorVisible(true);
+                      setCursorType("title");    
                     }}
                     onMouseLeave={() => {
                       setHoveredTitle("");
-                      setCursorVisible(false);
+                      setCursorType("default");
                     }}
                   />
                 )}

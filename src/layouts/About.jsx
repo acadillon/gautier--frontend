@@ -74,7 +74,7 @@ const About = ({ isOpen }) => {
               href={`mailto:${about.email}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue block"
+              className="block text-blue "
             >
               {about.email}
             </a>
@@ -83,7 +83,7 @@ const About = ({ isOpen }) => {
               href={`tel:${about.phone}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue block"
+              className="block text-blue "
             >
               {about.phone}
             </a>
@@ -91,7 +91,7 @@ const About = ({ isOpen }) => {
               href={about.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue block"
+              className="block text-blue "
             >
               <p>instagram</p>
             </a>
@@ -100,7 +100,7 @@ const About = ({ isOpen }) => {
             <div>
               <p>{about.bio}</p>
             </div>
-            <div className="about--collab flex flex-col gap-margin">
+            <div className="about--current-collab flex flex-col gap-margin">
               <div>
                 <p>Collaborateur.ice.s</p>
                 <p>{about.currentCollab}</p>
@@ -108,13 +108,15 @@ const About = ({ isOpen }) => {
               <div>
                 <button
                   onClick={() => setIsPastCollabOpen(!isPastCollabOpen)}
-                  className=" hover:text-blue"
+                  className={`cursor-pointer hover:text-blue ${
+                    isPastCollabOpen ? "text-blue" : ""
+                  }`}
                 >
                   (collaborateur.ice.s passé.es)
                 </button>
                 <div
-                  className={`about--pastCollab overflow-hidden transition-all duration-700 ease-in-out ${
-                    isPastCollabOpen ? "opacity-100" : "opacity-0"
+                  className={`about--past-collab overflow-hidden transition-all duration-700 ease-in-out ${
+                    isPastCollabOpen ? "opacity-100 text-blue" : "opacity-0"
                   }`}
                 >
                   {isPastCollabOpen && (
@@ -126,29 +128,38 @@ const About = ({ isOpen }) => {
               </div>
             </div>
           </div>
-          <div className="about--phases">
-            <ul className="">
+
+          <div className="about--work-phases">
+            <ul>
               {about.workPhase.map((phase, index) => (
-                <li key={phase.id}>
+                <li className="cursor-pointer hover:text-blue" key={phase.id}>
                   <div
                     onClick={() => togglePhase(index)}
-                    className={`flex gap-[5px] ${
+                    className={`work-phases--line flex gap-[5px] ${
                       activePhaseIndex === index ? "text-blue" : ""
                     }`}
                   >
-                    <div className="flex justify-between">
+                    <div className="work-phases--number flex justify-between">
                       <p className="w-[15px]">{index + 1}</p>
                       <p>–</p>
                     </div>
-                    <div className="flex-1">
+
+                    <div className="work-phases--title flex-1">
                       <p>{phase.title}</p>
-                      {activePhaseIndex === index && (
-                        <p className=" text-blue transition-all duration-500">
-                          {phase.description}
-                        </p>
-                      )}
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          activePhaseIndex === index
+                            ? "max-h-[300px] opacity-100"
+                            : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <p className="text-blue">{phase.description}</p>
+                      </div>
                     </div>
-                    <div>{phase.duration}</div>
+
+                    <div className="work-phases--duration">
+                      {phase.duration}
+                    </div>
                   </div>
                 </li>
               ))}

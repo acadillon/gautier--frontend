@@ -13,9 +13,7 @@ const projects = await fetchApi({
 export const prerender = true;
 ---
 
-<Layout title="Welcome to Astro.">
-  <Header client:only="react" isHome={true} />
-  <main class="m-margin mt-0">
-    <ProjectsList client:only="react" projects={projects} />
-  </main>
+<Layout title="G-architecture">
+  <Header client:load isHome={true} />
+  <ProjectsList client:only="react" projects={projects} />
 </Layout>

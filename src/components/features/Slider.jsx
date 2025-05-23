@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CustomCursor from "../common/CustomCursor";
+import SwiperButton from "../common/SwiperButton";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -74,14 +75,7 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                     }
                 `}
             </style>
-            <div
-                onMouseEnter={() => {
-                    setCursorType("arrow");     // Type = flèche
-                }}
-                onMouseLeave={() => {
-                    setCursorType("default");
-                }}
-            >
+            <div>
                 <Swiper
                     navigation={true}
                     modules={[Navigation, Keyboard]}
@@ -99,6 +93,30 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                     }}
                     className="mySwiper md:h-[calc(100vh-57px)]"
                 >
+
+
+                    <SwiperButton
+                        className="swiper-button-next"
+                        onClick={() => swiperRef.current?.slideNext()}
+                        onMouseEnter={() => {
+                            setCursorType("arrow-right");     // Type = flèche
+                        }}
+                        onMouseLeave={() => {
+                            setCursorType("default");
+                        }}
+                    />
+                    <SwiperButton
+                        className="swiper-button-prev"
+                        onClick={() => swiperRef.current?.slidePrev()}
+                        onMouseEnter={() => {
+                            setCursorType("arrow-left");     // Type = flèche
+                        }}
+                        onMouseLeave={() => {
+                            setCursorType("default");
+                        }}
+                    />
+
+
                     {data.media.map((media, id) => {
                         const imageUrl =
                             media.formats?.large?.url || media.url;

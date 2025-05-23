@@ -3,12 +3,13 @@
 import fetchApi from "../assets/scripts/lib/strapi.js";
 import Layout from "../layouts/Layout.astro";
 import Header from "../layouts/Header.jsx";
-import Project from "../layouts/Project.jsx";
+import Project from '../layouts/Project.jsx' 
 
 export async function getStaticPaths() {
   const projects = await fetchApi({
     endpoint: "projects?populate=*",
-    wrappedByKey: "data",
+    wrappedByKey: "data", 
+
   });
 
   return projects.map((project) => {
@@ -21,11 +22,10 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const { project } = Astro.props;
-
 export const prerender = true;
 ---
 
-<Layout title={`G-architecture – ${project.title}`}>
+<Layout title="Welcome to Astro.">
   <Header data={project} isHome={false} />
-  <Project data={project} client:only="react" />
+  <Project data={project} client:only="react"/> 
 </Layout>

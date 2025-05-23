@@ -11,9 +11,9 @@ export default function ProjectsList({ projects }) {
     <>
       <CustomCursor text={hoveredTitle} visible={cursorVisible} />
 
-      <div className="md:grid md:grid-cols-3 md:gap-margin w-full">
+      <div className="px-margin pb-margin grid grid-cols-1 md:grid-cols-3 gap-margin w-full">
         {projects.map((project) => {
-          const imageUrl =
+          const imageUrl =  
             project.media?.[0]?.formats?.medium?.url || project.media?.[0]?.url;
 
           return (

@@ -8,7 +8,7 @@ const about = await fetchApi({
   wrappedByKey: "data",
 });
 
-const About = ({ isOpen }) => {
+const About = ({ isOpen, isHome }) => {
   const contentRef = useRef(null);
   const pastCollabRef = useRef(null);
 
@@ -68,7 +68,7 @@ const About = ({ isOpen }) => {
           isOpen ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="p-margin pt-0 md:grid md:grid-cols-3 md:gap-margin w-full">
+        <div className="w-full p-margin pt-0 pb-[50px] md:pb-margin grid grig-cols-1 md:grid-cols-3 gap-[50px] md:gap-margin">
           <div className="about--infos">
             <a
               href={`mailto:${about.email}`}
@@ -96,7 +96,7 @@ const About = ({ isOpen }) => {
               <p>instagram</p>
             </a>
           </div>
-          <div className="about--bio flex flex-col gap-[100px] max-w-[462px]">
+          <div className="about--bio pt-0 flex flex-col gap-[50px] md:gap-[100px] max-w-[462px]">
             <div>
               <p>{about.bio}</p>
             </div>
@@ -128,8 +128,8 @@ const About = ({ isOpen }) => {
               </div>
             </div>
           </div>
-
-          <div className="about--work-phases">
+          <div className="about--work-phases flex flex-col gap-margin">
+            <div className="text-title md:hidden block ">Phases de travail</div>
             <ul>
               {about.workPhase.map((phase, index) => (
                 <li className="cursor-pointer hover:text-blue" key={phase.id}>
@@ -147,7 +147,7 @@ const About = ({ isOpen }) => {
                     <div className="work-phases--title flex-1">
                       <p>{phase.title}</p>
                       <div
-                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        className={`overflow-hidden transition-all duration-700 ease-in-out ${
                           activePhaseIndex === index
                             ? "max-h-[300px] opacity-100"
                             : "max-h-0 opacity-0"
@@ -172,4 +172,3 @@ const About = ({ isOpen }) => {
 };
 
 export default About;
-//flex justify-between cursor-pointer

@@ -18,7 +18,7 @@ const Header = ({ isHome, data = {} }) => {
           {isHome ? (
             <button
               onClick={handleClick}
-              className="header--infos block text-left text-title order-2 md:order-1 hover:text-blue"
+              className={`header--infos block text-left text-title order-2 md:order-1 hover:text-blue ${isOpen ? 'max-md:text-blue' : ''}`}
             >
               <span className="md:capitalize">infos</span>
             </button>
@@ -59,7 +59,7 @@ const Header = ({ isHome, data = {} }) => {
             <div className="header--workphase-cross order-3 md:order-3 flex justify-end items-center">
               <a
                 href="/"
-                className="text-title group"
+                className="text-title group block p-[6px]"
                 title="Retour à l’accueil"
                 aria-label="Retour à l’accueil"
               >

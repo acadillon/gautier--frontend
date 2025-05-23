@@ -35,14 +35,35 @@ export default function CustomCursor({ type = "default", text = "" }) {
         </span>
       )}
       {type === "arrow-right" && (
-        <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 7.50002H16.5M16.5 7.50002L10 1M16.5 7.50002L10 14.5" stroke="#0000EE" stroke-width="2" />
-        </svg>
+      <svg
+      width="26"
+      height="22"
+      viewBox="0 0 26 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 10.6297H24M24 10.6297L14.5455 1M24 10.6297L14.5455 21"
+        stroke="#0000EE"
+        stroke-width="2"
+      />
+    </svg>
       )}
       {type === "arrow-left" && (
-        <svg width="18" height="16" viewBox="0 0 18 16" className="rotate-180" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 7.50002H16.5M16.5 7.50002L10 1M16.5 7.50002L10 14.5" stroke="#0000EE" stroke-width="2" />
-        </svg>
+       <svg
+       width="26"
+       height="22"
+       viewBox="0 0 26 22"
+       fill="none"
+       xmlns="http://www.w3.org/2000/svg"
+       className="rotate-180"
+     >
+       <path
+         d="M0 10.6297H24M24 10.6297L14.5455 1M24 10.6297L14.5455 21"
+         stroke="#0000EE"
+         stroke-width="2"
+       />
+     </svg>
       )}
       {type === "default" && (
         <div className="aspect-square w-[12px] bg-blue rounded-full"></div>

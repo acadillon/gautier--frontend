@@ -8,11 +8,7 @@ import Blueprint from "../components/features/Blueprint.jsx";
 const Project = ({ data }) => {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [showBlueprint, setShowBlueprint] = useState(false);
-
-  useEffect(() => {
-    setShowBlueprint(true);
-  }, []);
+  
 
   const goToSlide = (index) => {
     if (swiperInstance) {
@@ -31,7 +27,7 @@ const Project = ({ data }) => {
       <main className="max-md:mx-margin mb-margin md:ml-margin mt-0 flex flex-col md:grid md:grid-cols-3 gap-margin h-[calc(100vh-57px)]">
         <div className="project-infos--wrapper flex flex-col justify-center md:h-full">
           <ProjectInfos data={data} />
-          <div className={`max-md:hidden flex flex-col justify-center h-full transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
+          <div className={`max-md:hidden flex flex-col justify-center h-full`}>
             <Blueprint
               data={data}
               goToSlide={goToSlide}

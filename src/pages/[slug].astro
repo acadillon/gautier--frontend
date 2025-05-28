@@ -25,7 +25,7 @@ const { project } = Astro.props;
 export const prerender = true;
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={`G. architecture - ${project.title}`}>
   <Header data={project} isHome={false} />
   <Project data={project} client:only="react"/> 
 </Layout>

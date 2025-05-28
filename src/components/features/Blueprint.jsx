@@ -5,7 +5,6 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
         if (!caption) return { x: 0, y: 0 };
         
         const match = caption.match(/x(\d+)_y(\d+)/);
-        console.log(match);
         if (match) {
             return {
                 x: match[1],

@@ -13,7 +13,7 @@ const projects = await fetchApi({
 export const prerender = true;
 ---
 
-<Layout title="G-architecture">
+<Layout title="G. architecture">
   <Header client:load isHome={true} />
   <ProjectsList client:only="react" projects={projects} />
 </Layout>

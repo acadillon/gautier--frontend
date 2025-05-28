@@ -24,6 +24,11 @@ const About = ({ isOpen, isHome, delayOpenAnnimation, setDelayOpenAnnimation }) 
     setActivePhaseIndex(index === activePhaseIndex ? null : index);
   };
 
+  const openPastCollab = () => {
+    setIsPastCollabOpen(!isPastCollabOpen);
+    setDelayOpenAnnimation(false);
+  };
+
   // ResizeObserver principal
   useEffect(() => {
     const contentEl = contentRef.current;
@@ -112,7 +117,7 @@ const About = ({ isOpen, isHome, delayOpenAnnimation, setDelayOpenAnnimation }) 
               </div>
               <div>
                 <button
-                  onClick={() => setIsPastCollabOpen(!isPastCollabOpen)}
+                  onClick={() => openPastCollab()}
                   className={`cursor-pointer hover:text-blue ${
                     isPastCollabOpen ? "text-blue" : ""
                   }`}

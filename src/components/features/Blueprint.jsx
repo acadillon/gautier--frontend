@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 const Blueprint = ({ data, goToSlide, activeSlide }) => {
     const [showBlueprint, setShowBlueprint] = useState(false);
+    const blueprintWidth = data.blueprint.width;
+    const blueprintHeight = data.blueprint.height;
 
     const parseCoordinates = (caption) => {
         if (!caption) return { x: 0, y: 0 };
@@ -9,13 +11,12 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
         const match = caption.match(/x(\d+)_y(\d+)/);
         if (match) {
             return {
-                x: match[1],
-                y: match[2]
+                x: (parseInt(match[1]) / blueprintWidth) * 100,
+                y: (parseInt(match[2]) / blueprintHeight) * 100
             };
         } else {
             return { x: 0, y: 0 };
         }
-
     };
 
     const handleBlueprintLoad = () => {
@@ -24,10 +25,9 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
 
     return (
         <>
-            <div className={`relative aspect-square w-full px-[30px] transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
+            <div className={`relative aspect-[100/120] w-full px-[30px] transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
 
-
-                <img src={data.blueprint.url} alt='blueprint' key={data.blueprint.id} onLoad={handleBlueprintLoad} className="aspect-square object-contain w-full h-full" />
+                <img src={data.blueprint.url} alt='blueprint' key={data.blueprint.id} onLoad={handleBlueprintLoad} className="aspect-[100/120] object-contain w-full h-full" />
 
                 {data.media.map((media, id) => {
                     const coords = parseCoordinates(media.caption);
@@ -41,6 +41,7 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
                                 left: `${coords.x}%`,
                                 top: `${coords.y}%`
                             }}
+                            alt={media.caption}
                         >
                         </button>
                     );

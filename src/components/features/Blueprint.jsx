@@ -38,8 +38,8 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
                             onClick={() => goToSlide(id)}
                             className={`absolute aspect-square w-[12px] rounded-full ${isActive ? 'bg-blue' : 'bg-gray-500'}`}
                             style={{
-                                left: `${coords.x}px`,
-                                top: `${coords.y}px`
+                                left: `${coords.x}%`,
+                                top: `${coords.y}%`
                             }}
                         >
                         </button>

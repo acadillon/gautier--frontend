@@ -42,3 +42,6 @@ body {
   cursor: none !important;
 }
 
+header{
+  font-feature-settings: 'ss03' 1;
+}

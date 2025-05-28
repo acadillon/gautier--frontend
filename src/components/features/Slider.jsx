@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CustomCursor from "../common/CustomCursor";
 import SwiperButton from "../common/SwiperButton";
@@ -10,6 +10,9 @@ import { Navigation, Keyboard } from 'swiper/modules';
 export default function Slider({ data, onSwiperReady, onSlideChange }) {
     const swiperRef = useRef(null);
     const [cursorType, setCursorType] = useState("default");
+    const [imagesLoaded, setImagesLoaded] = useState(0);
+    const [showSwiper, setShowSwiper] = useState(false);
+    const totalImages = data.media.length * 2; // *2 car les images sont dupliquées dans le loop
 
     const handleSwiper = (swiper) => {
         // Stocker l'instance
@@ -31,7 +34,16 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
         }
     };
 
-    const loopAdditionalSlides = data.media.length + 1;
+    const handleImageLoad = () => {
+        setImagesLoaded(prev => {
+            const newCount = prev + 1;
+            if (newCount === totalImages) {
+                setShowSwiper(true);
+            }
+            return newCount;
+        });
+    };
+
     return (
         <>
             <style>
@@ -82,16 +94,19 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                 slidesPerView={'auto'}
                 spaceBetween={10}
                 loop={true}
+                lazyPreloadPrevNext={2}
                 keyboard={{
                     enabled: true,
                 }}
                 // loopAdditionalSlides={loopAdditionalSlides}
-                onSwiper={handleSwiper}
+                onSwiper={(swiper) => {
+                    handleSwiper(swiper);
+                }}
                 onSlideChange={(swiper) => {
                     handleSlideChange();
                     if (onSlideChange) onSlideChange(swiper);
                 }}
-                className="mySwiper md:h-[calc(100vh-57px)]"
+                className={`mySwiper md:h-[calc(100vh-57px)] transition-all duration-700 ease-in-out ${showSwiper ? "opacity-100" : "opacity-0"}`}
             >
 
 
@@ -131,8 +146,8 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                                     src={imageUrl}
                                     srcSet={`${imageUrlSmall} 500w, ${imageUrlMedium} 700w, ${imageUrl} 1200w`}
                                     sizes="(max-width: 500px) 500px, (max-width: 700px) 700px, 1200px"
-                                    loading="lazy"
                                     className="md:h-[calc(100vh-57px)] w-auto block"
+                                    onLoad={handleImageLoad}
                                 />
                             </div>
                         </SwiperSlide>);
@@ -163,8 +178,8 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                                     src={imageUrl}
                                     srcSet={`${imageUrlSmall} 500w, ${imageUrlMedium} 700w, ${imageUrl} 1200w`}
                                     sizes="(max-width: 500px) 500px, (max-width: 700px) 700px, 1200px"
-                                    loading="lazy"
                                     className="md:h-[calc(100vh-57px)] w-auto block"
+                                    onLoad={handleImageLoad}
                                 />
                             </div>
                         </SwiperSlide>);
@@ -182,6 +197,7 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                     </SwiperSlide>
                 )}
             </Swiper>
+
 
             <CustomCursor type={cursorType} />
         </>

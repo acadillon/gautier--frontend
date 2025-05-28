@@ -12,7 +12,7 @@ export default function ProjectsList({ projects }) {
     <>
       <CustomCursor type={cursorType} text={hoveredTitle} />
 
-      <div className={`px-margin pb-margin grid grid-cols-1 md:grid-cols-3 gap-margin w-full animate-enter`}>
+      <div className={`px-margin pb-margin grid grid-cols-1 md:grid-cols-3 gap-margin w-full opacity-0 animate-enter`}>
         {projects.map((project) => {
           const imageUrl =  
             project.media?.[0]?.formats?.medium?.url || project.media?.[0]?.url;

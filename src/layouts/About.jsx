@@ -8,7 +8,7 @@ const about = await fetchApi({
   wrappedByKey: "data",
 });
 
-const About = ({ isOpen, isHome }) => {
+const About = ({ isOpen, isHome, delayOpenAnnimation, setDelayOpenAnnimation }) => {
   const contentRef = useRef(null);
   const pastCollabRef = useRef(null);
 
@@ -16,9 +16,11 @@ const About = ({ isOpen, isHome }) => {
   const [collabHeight, setCollabHeight] = useState(0);
   const [isPastCollabOpen, setIsPastCollabOpen] = useState(false);
 
+
   const [activePhaseIndex, setActivePhaseIndex] = useState(null);
 
   const togglePhase = (index) => {
+    setDelayOpenAnnimation(true);
     setActivePhaseIndex(index === activePhaseIndex ? null : index);
   };
 
@@ -59,9 +61,12 @@ const About = ({ isOpen, isHome }) => {
 
   return (
     <div
-      className="about--wrapper overflow-hidden transition-all duration-700 ease-in-out"
+      className={`about--wrapper overflow-hidden transition-all duration-700 ease-in-out ${
+          delayOpenAnnimation ? "delay-[1000ms]" : ""
+        }`}
       style={{ maxHeight: `${height}px` }}
     >
+      
       <div
         ref={contentRef}
         className={`transition-opacity duration-700 ease-in-out ${

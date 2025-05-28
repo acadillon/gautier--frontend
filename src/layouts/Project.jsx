@@ -18,7 +18,6 @@ const Project = ({ data }) => {
 
   const handleSlideChange = (swiper) => {
     setActiveSlide(swiper.realIndex);
-    console.log(swiper.realIndex);
   };
 
   return (

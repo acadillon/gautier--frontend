@@ -5,9 +5,11 @@ import About from "./About.jsx";
 
 const Header = ({ isHome, data = {} }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [delayOpenAnnimation, setDelayOpenAnnimation] = useState(false);
 
   function handleClick() {
     setIsOpen(!isOpen);
+    setDelayOpenAnnimation(false);
   }
 
   // Render
@@ -82,7 +84,7 @@ const Header = ({ isHome, data = {} }) => {
           )}
         </div>
       </header>
-      <About isOpen={isOpen} isHome={isHome} />
+      <About isOpen={isOpen} isHome={isHome} delayOpenAnnimation={delayOpenAnnimation} setDelayOpenAnnimation={setDelayOpenAnnimation}/>
     </>
   );
 };

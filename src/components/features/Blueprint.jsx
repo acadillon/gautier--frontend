@@ -44,7 +44,7 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
                             alt={media.caption}
                         >
                         </button>
-                    );
+                    ); 
                 })}
 
             </div>

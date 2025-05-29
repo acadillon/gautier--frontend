@@ -2,6 +2,11 @@ import React, { useState } from "react";
 
 const Blueprint = ({ data, goToSlide, activeSlide }) => {
     const [showBlueprint, setShowBlueprint] = useState(false);
+    
+    if (!data || !data.blueprint) {
+        return null;
+    }
+
     const blueprintWidth = data.blueprint.width;
     const blueprintHeight = data.blueprint.height;
 

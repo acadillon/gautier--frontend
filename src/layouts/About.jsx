@@ -150,7 +150,7 @@ const About = ({ isOpen, isHome, delayOpenAnnimation, setDelayOpenAnnimation }) 
                     }`}
                   >
                     <div className="work-phases--number flex justify-between">
-                      <p className="w-[15px]">{index + 1}</p>
+                      <p className="w-[15px]">{index}</p>
                       <p>–</p>
                     </div>
 

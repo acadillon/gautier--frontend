@@ -15,6 +15,7 @@ const ProjectInfos = ({ data }) => {
                 {data.city && (
                     <p>
                         Ville : {data.city}
+                        {data.district && `, ${data.district}`}
                     </p>
                 )}
                 {data.area && (
@@ -25,6 +26,11 @@ const ProjectInfos = ({ data }) => {
                 {data.year && (
                     <p>
                         Année : {data.year}
+                    </p>
+                )}
+                {data.peb && (
+                    <p>
+                        PEB : {data.peb}
                     </p>
                 )}
             </div>

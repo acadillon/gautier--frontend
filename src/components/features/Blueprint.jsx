@@ -21,7 +21,7 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
 
     const handleBlueprintLoad = () => {
         setShowBlueprint(true);
-    };
+    };   
 
     return (
         <>

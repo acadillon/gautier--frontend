@@ -158,9 +158,9 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                             <p>
                                 {data.description}
                             </p>
-                            <p>
+                            <p className='mt-[5px]'>
                                 Crédits photos : {data.credit}
-                            </p>
+                            </p> 
                         </div>
                     </SwiperSlide>
                 )}
@@ -190,7 +190,7 @@ export default function Slider({ data, onSwiperReady, onSlideChange }) {
                             <p>
                                 {data.description}
                             </p>
-                            <p>
+                            <p className='mt-[5px]'>
                                 Crédits photos : {data.credit}
                             </p>
                         </div>

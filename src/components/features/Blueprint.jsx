@@ -28,7 +28,7 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
             <div className={`relative aspect-[100/120] w-full px-[30px] transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
 
                 <img src={data.blueprint.url} alt='blueprint' key={data.blueprint.id} onLoad={handleBlueprintLoad} className="aspect-[100/120] object-contain w-full h-full" />
-
+ 
                 {data.media.map((media, id) => {
                     const coords = parseCoordinates(media.caption);
                     const isActive = id === activeSlide;

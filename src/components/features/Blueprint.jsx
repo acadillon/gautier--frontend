@@ -2,6 +2,11 @@ import React, { useState } from "react";
 
 const Blueprint = ({ data, goToSlide, activeSlide }) => {
     const [showBlueprint, setShowBlueprint] = useState(false);
+    
+    if (!data || !data.blueprint) {
+        return null;
+    }
+
     const blueprintWidth = data.blueprint.width;
     const blueprintHeight = data.blueprint.height;
 
@@ -21,14 +26,14 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
 
     const handleBlueprintLoad = () => {
         setShowBlueprint(true);
-    };
+    };   
 
     return (
         <>
             <div className={`relative aspect-[100/120] w-full px-[30px] transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
 
                 <img src={data.blueprint.url} alt='blueprint' key={data.blueprint.id} onLoad={handleBlueprintLoad} className="aspect-[100/120] object-contain w-full h-full" />
-
+ 
                 {data.media.map((media, id) => {
                     const coords = parseCoordinates(media.caption);
                     const isActive = id === activeSlide;

@@ -42,9 +42,9 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
                                 top: `${coords.y}%`
                             }}
                             alt={media.caption}
-                        >
+                        > 
                         </button>
-                    );
+                    ); 
                 })}
 
             </div>

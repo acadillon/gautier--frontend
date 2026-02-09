@@ -27,7 +27,7 @@ const Project = ({ data }) => {
       <main className="max-md:mx-margin mb-margin md:ml-margin mt-0 flex flex-col md:grid md:grid-cols-3 gap-margin h-[calc(100vh-57px)]">
         <div className="project-infos--wrapper flex flex-col justify-center md:h-full">
           <ProjectInfos data={data} />
-          <div className={`max-md:hidden flex flex-col justify-center h-full`}>
+          <div className={`max-md:hidden flex flex-col justify-center h-full px-[30px]`}>
             <Blueprint
               data={data}
               goToSlide={goToSlide}

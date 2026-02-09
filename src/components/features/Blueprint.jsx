@@ -30,7 +30,7 @@ const Blueprint = ({ data, goToSlide, activeSlide }) => {
 
     return (
         <>
-            <div className={`relative aspect-[100/120] w-full px-[30px] transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
+            <div className={`relative aspect-[100/120] w-full transition-opacity duration-700 delay-100 ease-in-out ${showBlueprint ? "opacity-100" : "opacity-0"}`}>
 
                 <img src={data.blueprint.url} alt='blueprint' key={data.blueprint.id} onLoad={handleBlueprintLoad} className="aspect-[100/120] object-contain w-full h-full" />
  

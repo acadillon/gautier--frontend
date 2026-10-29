@@ -5,10 +5,12 @@ import Header from "../layouts/Header.jsx";
 import ProjectsList from "../layouts/ProjectsList.jsx";
 import fetchApi from "../assets/scripts/lib/strapi.js";
 
-const projects = await fetchApi({
-  endpoint: "projects?populate=*",
+const homepage = await fetchApi({
+  endpoint: "homepage?populate[projects][populate]=*",
   wrappedByKey: "data",
 });
+
+const projects = homepage.projects ?? [];
 
 export const prerender = true;
 ---

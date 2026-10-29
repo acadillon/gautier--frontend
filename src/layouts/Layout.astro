@@ -1,25 +1,28 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 // src/pages/Layout.astro
-import "../assets/styles/global.css";
+import '../assets/styles/global.css';
 export interface Props {
-  title: string;
+    title: string;
 }
 
 const { title } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="G-architecture" content="Studio d'architecture à Bruxelles" />
-    <title>{title}</title>
-    <ClientRouter />
-  </head>
-  <body >
-    <slot />
-  </body>
-</html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+        <meta
+            name='G-architecture'
+            content="Studio d'architecture à Bruxelles"
+        />
+        <title>{title}</title>
+        <ClientRouter />
+    </head>
+    <body>
+        <slot />
+    </body></html
+>
